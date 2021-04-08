@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catch Me</title>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+
+    <style>
+      body {
+        background-color: #d9e4dd;
+      }
+      #buttons {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr 4fr 1fr 2fr;
+        outline: none;
+      }
+      .inactive {
+        background-color: transparent;
+        opacity: 0.5;
+        margin: 10px;
+        padding: 50px;
+        border-radius: 28px;
+        color: transparent;
+        border: transparent;
+        font-size: 1em;
+        outline: none;
+      }
+
+      .active {
+        background-color: #9aa39d;
+        opacity: 0.5;
+        margin: 83px;
+        padding: 50px;
+        border-radius: 28px;
+        color: #433d3c;
+        border: transparent;
+        font-size: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <h1 id="counterdisplay">0</h1> -->
+    <div id="buttons">
+      <button id="btn1" class="inactive">Click Me</button>
+      <button id="btn2" class="inactive">Click Me</button>
+      <button id="btn3" class="inactive">Click Me</button>
+      <button id="btn4" class="inactive">Click Me</button>
+      <button id="btn5" class="inactive">Click Me</button>
+      <button id="btn6" class="inactive">Click Me</button>
+      <button id="btn7" class="inactive">Click Me</button>
+      <button id="btn8" class="inactive">Click Me</button>
+      <button id="btn9" class="inactive">Click Me</button>
+      <button id="btn10" class="inactive">Click Me</button>
+    </div>
+  </body>
+  <script>
+    let counter = 0;
+    lodashRandNumber = () => {
+      return _.random(1, 10);
+    };
+
+    let activeButton = document.querySelector(`#btn${lodashRandNumber()}`);
+    console.log(activeButton);
+    activeButton.className = "active";
+
+    document.querySelector("#buttons").addEventListener("click", function (e) {
+      const button = e.target;
+      if (button.classList.contains("active")) {
+        button.classList.remove("active");
+        button.classList.add("inactive");
+        let newActiveButton = document.querySelector(
+          `#btn${lodashRandNumber()}`
+        );
+        console.log(newActiveButton);
+        newActiveButton.className = "active";
+      }
+    });
+
+    const clickCounter = document.getElementById("counterdisplay");
+
+    activeButton.onclick = () => {
+      //   timer();
+      counter++;
+      counterdisplay.innerHTML = counter;
+    };
+    newActiveButton.onclick = () => {
+      //   timer();
+      counter++;
+      counterdisplay.innerHTML = counter;
+    };
+  </script>
+</html>

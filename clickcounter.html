@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        background-color: #7c9473;
+        opacity: 0.5;
+        padding: 50px;
+        border-radius: 28px;
+        color: whitesmoke;
+        border: transparent;
+        font-size: 5em;
+      }
+
+      h2 {
+        color: tomato;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="content-wrapper">
+      <div class="buttonGame">
+        <button id="button">Click here</button>
+      </div>
+
+      <h1 id="output">0</h1>
+      <h1 id="timer">Timer</h1>
+    </div>
+  </body>
+  <script>
+    const button = document.getElementById("button");
+    const btnOutput = document.getElementById("output");
+    const onScreenTimer = document.getElementById("timer");
+    let counter = 0;
+    let seconds = 0;
+
+    const timer = () => {
+      if (counter === 0) {
+        onScreenTimer.innerHTML = seconds;
+        setInterval(() => {
+          seconds++;
+          onScreenTimer.innerHTML = endTimer() ? "<h2>Game over</h2>" : seconds;
+          endTimer();
+        }, 1000);
+      }
+    };
+
+    button.onclick = () => {
+      timer();
+      counter++;
+      btnOutput.innerHTML = counter;
+    };
+
+    const endTimer = () => {
+      if (seconds >= 15) {
+        document.getElementById("button").disabled = true;
+        return true;
+      }
+    };
+  </script>
+</html>
